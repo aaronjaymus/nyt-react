@@ -1,8 +1,8 @@
 // Include the React library
-var React = require("react");
+import React from 'react';
 
 // Include the react-router module
-var router = require("react-router");
+import router from 'react-router';
 
 // Include the Route component for displaying individual routes
 var Route = router.Route;
@@ -19,9 +19,12 @@ var hashHistory = router.hashHistory;
 var IndexRoute = router.IndexRoute;
 
 //Reference the high level components
-var Main = require("../components/Main");
-var Results = require("../components/Results");
-var Saved = require("../components/Saved");
+//var Main = require("../components/Main");
+import Main from "../components/Main";
+//var Results = require("../components/Results");
+import Results from "../components/Results";
+//var Saved = require("../components/Saved");
+import Saved from "..components/Saved";
 
 // Export the Routes
 module.exports = (

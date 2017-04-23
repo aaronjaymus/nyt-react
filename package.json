@@ -10,6 +10,7 @@
   "author": "A. James McHale",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.1",
     "mongoose": "^4.9.4",
     "mongoose-unique-validator": "^1.0.5",
     "morgan": "^1.8.1",

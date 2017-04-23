@@ -1,7 +1,7 @@
 //var React = require("react");
 import React from 'react';
 
-class Saved extends React.Component({
+export class Saved extends React.Component({
 
 	render: function() {
 
@@ -11,4 +11,4 @@ class Saved extends React.Component({
 	}
 });
 
-export class Saved;
+// export class Saved;

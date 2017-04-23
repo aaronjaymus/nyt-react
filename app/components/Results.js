@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-class Results extends React.Component({
+export class Results extends React.Component({
 
 	render: function() {
 
@@ -12,4 +12,4 @@ class Results extends React.Component({
 	}
 });
 
-export class Results;
+// export class Results;

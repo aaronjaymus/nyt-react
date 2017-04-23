@@ -6,7 +6,7 @@ import React from 'react';
 //var helpers = require("./utils/helpers");
 import helpers from './utils/helpers';
 
-class Main extends React.Component({
+export default class Main extends React.Component({
 
 	getInitialState: function() {
 		return {
@@ -55,4 +55,4 @@ class Main extends React.Component({
 	}
 });
 
-export class Main;
+// export class Main;
