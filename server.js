@@ -51,21 +51,21 @@ app.get("/saved", function(req, res) {
 	})
 });
 
-app.post("/saved", function(req, res) {
-	var newArticle = new Article({
-		title: req.body.title,
-		link: title.body.link,
-		dateSaved: Date.now()
-	});
+// app.post("/saved", function(req, res) {
+// 	var newArticle = new Article({
+// 		title: req.body.title,
+// 		link: title.body.link,
+// 		dateSaved: Date.now()
+// 	});
 
-	Article.save(function(err, doc){
-		if(err){
-			console.log(err);
-		} else {
-			console.log(doc);
-		}
-	});
-});
+// 	Article.save(function(err, doc){
+// 		if(err){
+// 			console.log(err);
+// 		} else {
+// 			console.log(doc);
+// 		}
+// 	});
+// });
 
 
 app.listen(PORT, function() {

@@ -4,8 +4,16 @@ import React from 'react';
 
 var Results = React.createClass({
 
-	handleClick: function(event) {
-		console.log(event);
+	handleClick: function(i) {
+		//this.props.saveButton(event);
+		
+		console.log("i = "+i);
+		var results = this.props.results;
+		var articleToSave = results[i];
+		// console.log("Article to Save");
+		// console.log(JSON.stringify(articleToSave));
+
+		this.props.postSaved(articleToSave);
 	},
 
 	render: function() {
@@ -25,14 +33,14 @@ var Results = React.createClass({
 								</a>
 								<button 
 									className="btn btn-success" 
-									data-value={search}
-									onClick={this.handleClick}
+									value={i}
+									onClick= {() => this.handleClick(i)}
 								>
 									Save
 								</button>
 							</div>
 						);
-					})}
+					}, this)}
 				</div>
 			
 			</div>

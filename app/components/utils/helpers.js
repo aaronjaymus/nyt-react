@@ -4,6 +4,9 @@ var $ = require("jquery");
 //require Axios
 var axios = require("axios");
 
+//Include Article Schema
+var Article = require("../../../models/Article");
+
 //NY Times API Key
 var apiKey = "fd55086accba45109946f7f9596171b9";
 
@@ -49,11 +52,24 @@ var helpers = {
 		return axios.get("/saved");
 	},
 
-	postSaved: function(event) {
+	postSaved: function(post) {
 
 		// return axios.post("/saved", {title: title, link: url});
-		console.log("postSaved ran");
-	  console.log(event);
+		console.log("postSaved ran from helpers. Article:");
+	  console.log(JSON.stringify(post));
+
+    var newArticle = new Article({
+      title: post.headline.main,
+      leadParagraph: post.lead_paragraph,
+      link: post.web_url,
+      date: Date.now()
+    });
+
+    Article.save(function(err, doc){
+      if(err){
+        console.log(err);
+      }
+    });
   }
 
 };

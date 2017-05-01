@@ -63,8 +63,8 @@ var Main = React.createClass({
 		this.setState({ endDate: end });
 	},
 
-	postSaved: function() {
-		helpers.postSaved(this);
+	postSaved: function(article) {
+		helpers.postSaved(article);
 	},
 
 	render: function () {
@@ -86,7 +86,7 @@ var Main = React.createClass({
 						setStart={this.setStart}
 						setEnd={this.setEnd}
 					/>
-					<Results results={this.state.results} postSaved={this.postSaved}/>
+					<Results results={this.state.results} postSaved={this.postSaved} />
 					<Saved saved={this.state.saved} />
 				</section>
 				
