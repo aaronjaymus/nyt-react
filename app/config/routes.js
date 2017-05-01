@@ -1,8 +1,8 @@
 // Include the React library
-import React from 'react';
+var React = require("react");
 
 // Include the react-router module
-import router from 'react-router';
+var router = require("react-router");
 
 // Include the Route component for displaying individual routes
 var Route = router.Route;
@@ -19,12 +19,14 @@ var hashHistory = router.hashHistory;
 var IndexRoute = router.IndexRoute;
 
 //Reference the high level components
-//var Main = require("../components/Main");
+
 import Main from "../components/Main";
-//var Results = require("../components/Results");
-import Results from "../components/Results";
-//var Saved = require("../components/Saved");
-import Saved from "..components/Saved";
+
+import Search from "../components/children/Search"
+
+import Results from "../components/children/Results";
+
+import Saved from "../components/children/Saved";
 
 // Export the Routes
 module.exports = (
@@ -34,13 +36,15 @@ module.exports = (
     <Route path="/" component={Main}>
 
       {/* If user selects Results or Saved show the appropriate component */}
+      <Route path="search" component={Search} />
       <Route path="results" component={Results} />
       <Route path="saved" component={Saved} />
 
-      {/* If user selects any other path... we get the Info Route */}
-      <IndexRoute component={Main} />
+      
+      {/*<IndexRoute component={Results} />*/}
 
     </Route>
+   
   </Router>
 
 );
