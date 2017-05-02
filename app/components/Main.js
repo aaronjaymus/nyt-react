@@ -27,7 +27,8 @@ var Main = React.createClass({
 		console.log(this.state);
 
 		helpers.getSaved().then(function(response) {
-			console.log("componentDidMount response: "+response);
+			console.log("componentDidMount response: ");
+			console.log(JSON.stringify(response));
 			if(response !== this.state.saved){
 				this.setState({saved: response.data});
 			}
@@ -65,6 +66,26 @@ var Main = React.createClass({
 
 	postSaved: function(article) {
 		helpers.postSaved(article);
+
+		// helpers.getSaved().then(function(response) {
+		// 	console.log("componentDidMount response: ");
+		// 	console.log(JSON.stringify(response));
+		// 	if(response !== this.state.saved){
+		// 		this.setState({saved: response.data});
+		// 	}
+		// }.bind(this));
+	},
+
+	deleteSaved: function(id) {
+		helpers.deleteSaved(id);
+
+		// helpers.getSaved().then(function(response) {
+		// 	console.log("componentDidMount response: ");
+		// 	console.log(JSON.stringify(response));
+		// 	if(response !== this.state.saved){
+		// 		this.setState({saved: response.data});
+		// 	}
+		// }.bind(this));		
 	},
 
 	render: function () {
@@ -87,7 +108,7 @@ var Main = React.createClass({
 						setEnd={this.setEnd}
 					/>
 					<Results results={this.state.results} postSaved={this.postSaved} />
-					<Saved saved={this.state.saved} />
+					<Saved saved={this.state.saved} deleteSaved={this.deleteSaved} />
 				</section>
 				
 		);

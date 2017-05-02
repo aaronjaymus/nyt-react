@@ -4,9 +4,6 @@ var $ = require("jquery");
 //require Axios
 var axios = require("axios");
 
-//Include Article Schema
-var Article = require("../../../models/Article");
-
 //NY Times API Key
 var apiKey = "fd55086accba45109946f7f9596171b9";
 
@@ -26,15 +23,6 @@ var helpers = {
   			'sort': "newest"
   		});
 
-  		// $.ajax({
-  		// 	url: queryURL,
-  		// 	method: "GET"
-  		// }).done(function(response){
-  		// 	console.log(response);
-  		// 	return response;
-  		// }).fail(function(err){
-  		// 	throw err;
-  		// });
   		return axios.get(queryURL).then(function(response){
   			if(response.data.response.docs){
   				return response.data.response.docs;
@@ -54,23 +42,45 @@ var helpers = {
 
 	postSaved: function(post) {
 
-		// return axios.post("/saved", {title: title, link: url});
+
 		console.log("postSaved ran from helpers. Article:");
 	  console.log(JSON.stringify(post));
 
-    var newArticle = new Article({
+    axios.post("/saved", {
       title: post.headline.main,
       leadParagraph: post.lead_paragraph,
-      link: post.web_url,
-      date: Date.now()
-    });
+      link: post.web_url
+    })
+    .then(function(response){
+      console.log("Axios save response");
+      console.log(response);
 
-    Article.save(function(err, doc){
-      if(err){
-        console.log(err);
-      }
-    });
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+
+  },
+
+  deleteSaved: function(id) {
+    console.log("Helpers js deleteSaved");
+    console.log(id);
+    
+    axios.post("/delete", {
+      id: id
+    })
+    .then(function(response){
+      console.log("Axios delete response");
+      console.log(response);
+      
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+
+
   }
+
 
 };
 

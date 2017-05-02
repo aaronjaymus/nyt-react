@@ -46,26 +46,39 @@ app.get("/saved", function(req, res) {
 		if (err) {
 			console.log(err)
 		} else {
+			console.log("This is the sent doc on get saved");
+			console.log(doc);
 			res.send(doc);
 		}
 	})
 });
 
-// app.post("/saved", function(req, res) {
-// 	var newArticle = new Article({
-// 		title: req.body.title,
-// 		link: title.body.link,
-// 		dateSaved: Date.now()
-// 	});
+app.post("/saved", function(req, res) {
+	var newArticle = new Article({
+		title: req.body.title,
+		link: req.body.link,
+		leadParagraph: req.body.leadParagraph,
+		dateSaved: Date.now()
+	});
 
-// 	Article.save(function(err, doc){
-// 		if(err){
-// 			console.log(err);
-// 		} else {
-// 			console.log(doc);
-// 		}
-// 	});
-// });
+	newArticle.save(function(err, doc){
+		if(err){
+			console.log(err);
+		} else {
+			console.log(doc);
+		}
+	});
+});
+
+app.post("/delete", function(req, res) {
+	console.log(req.body.id);
+
+	Article.remove({ _id: req.body.id }, function(err){
+		if(err){
+			console.log(err);
+		}
+	});
+});
 
 
 app.listen(PORT, function() {
