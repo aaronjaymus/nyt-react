@@ -18,7 +18,8 @@ var Main = React.createClass({
 			startDate: "",
 			endDate: "",
 			results: [],
-			saved: [] 
+			saved: [] ,
+			update: false
 		};
 	},
 
@@ -50,6 +51,23 @@ var Main = React.createClass({
 				}.bind(this));
 		}
 
+		// if(this.state.update){
+		// 	this.getSaved();
+		// 	this.setState({ update: false });
+		// }
+
+	},
+
+	getSaved: function() {
+
+		helpers.getSaved().then(function(response) {
+			console.log("componentDidMount response: ");
+			console.log(JSON.stringify(response));
+			if(response !== this.state.saved){
+				this.setState({saved: response.data});
+			}
+		}.bind(this));
+
 	},
 
 	setSearch: function(search) {
@@ -66,26 +84,11 @@ var Main = React.createClass({
 
 	postSaved: function(article) {
 		helpers.postSaved(article);
-
-		// helpers.getSaved().then(function(response) {
-		// 	console.log("componentDidMount response: ");
-		// 	console.log(JSON.stringify(response));
-		// 	if(response !== this.state.saved){
-		// 		this.setState({saved: response.data});
-		// 	}
-		// }.bind(this));
+		//this.setState({ update: true });
 	},
 
 	deleteSaved: function(id) {
-		helpers.deleteSaved(id);
-
-		// helpers.getSaved().then(function(response) {
-		// 	console.log("componentDidMount response: ");
-		// 	console.log(JSON.stringify(response));
-		// 	if(response !== this.state.saved){
-		// 		this.setState({saved: response.data});
-		// 	}
-		// }.bind(this));		
+		helpers.deleteSaved(id);	
 	},
 
 	render: function () {
@@ -107,8 +110,8 @@ var Main = React.createClass({
 						setStart={this.setStart}
 						setEnd={this.setEnd}
 					/>
-					<Results results={this.state.results} postSaved={this.postSaved} />
-					<Saved saved={this.state.saved} deleteSaved={this.deleteSaved} />
+					<Results results={this.state.results} postSaved={this.postSaved} getSaved={this.getSaved} />
+					<Saved saved={this.state.saved} deleteSaved={this.deleteSaved} getSaved={this.getSaved} />
 				</section>
 				
 		);

@@ -4,6 +4,12 @@ import React from 'react';
 
 var Results = React.createClass({
 
+	getInitialState: function() {
+		return {
+			update: false
+		};
+	},
+
 	handleClick: function(i) {
 		//this.props.saveButton(event);
 		
@@ -14,6 +20,14 @@ var Results = React.createClass({
 		// console.log(JSON.stringify(articleToSave));
 
 		this.props.postSaved(articleToSave);
+		this.setState({ update: true });
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		if(this.state.update){
+			this.props.getSaved();
+			this.setState({ update: false });
+		}
 	},
 
 	render: function() {

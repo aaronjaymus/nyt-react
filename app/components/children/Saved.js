@@ -3,10 +3,23 @@ import React from 'react';
 
 var Saved = React.createClass({
 
+	getInitialState: function() {
+		return {
+			update: false
+		};
+	},
 
 	handleClick: function(id) {
 		//console.log(id);
 		this.props.deleteSaved(id);
+		this.setState({ update: true });
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		if(this.state.update){
+			this.props.getSaved();
+			this.setState({ update: false });
+		}
 	},
 
 	render: function() {

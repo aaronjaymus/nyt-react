@@ -40,13 +40,13 @@ var helpers = {
 		return axios.get("/saved");
 	},
 
-	postSaved: function(post) {
+	postSaved: function(post, callback) {
 
 
 		console.log("postSaved ran from helpers. Article:");
 	  console.log(JSON.stringify(post));
 
-    axios.post("/saved", {
+    return axios.post("/saved", {
       title: post.headline.main,
       leadParagraph: post.lead_paragraph,
       link: post.web_url
@@ -66,7 +66,7 @@ var helpers = {
     console.log("Helpers js deleteSaved");
     console.log(id);
     
-    axios.post("/delete", {
+    return axios.post("/delete", {
       id: id
     })
     .then(function(response){
