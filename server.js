@@ -22,7 +22,8 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("./public"));
 
 // MongoDB Configuration configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://localhost/nytimes");
+//mongoose.connect("mongodb://localhost/nytimes");
+mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds143221.mlab.com:43221/heroku_n651tjl9");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
